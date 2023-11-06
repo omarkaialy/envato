@@ -56,7 +56,8 @@ class MainTextField extends StatefulWidget {
   State<MainTextField> createState() => _MainTextFieldState();
 }
 
-class _MainTextFieldState extends State<MainTextField> with WidgetsBindingObserver {
+class _MainTextFieldState extends State<MainTextField>
+    with WidgetsBindingObserver {
   @override
   void didChangeDependencies() {
     WidgetsBinding.instance.addObserver(this);
@@ -111,27 +112,37 @@ class _MainTextFieldState extends State<MainTextField> with WidgetsBindingObserv
           ),
           enabledBorder: OutlineInputBorder(
             borderRadius: widget.borderRadius ?? BorderRadius.circular(5),
-            borderSide: BorderSide(color: Colors.grey.shade300),
+            borderSide:
+                BorderSide(color: widget.borderColor ?? Colors.grey.shade300),
           ),
           disabledBorder: OutlineInputBorder(
             borderRadius: widget.borderRadius ?? BorderRadius.circular(5),
             borderSide: BorderSide(
-              color: widget.error ? Theme.of(context).colorScheme.error : Colors.grey.shade300,
+              color: widget.error
+                  ? Theme.of(context).colorScheme.error
+                  : Colors.grey.shade300,
             ),
           ),
           focusedBorder: OutlineInputBorder(
             borderRadius: widget.borderRadius ?? BorderRadius.circular(5),
-            borderSide: BorderSide(color: widget.borderColor ?? Theme.of(context).primaryColor),
+            borderSide: BorderSide(
+                color: widget.borderColor ?? Theme.of(context).primaryColor),
           ),
           border: OutlineInputBorder(
             borderRadius: widget.borderRadius ?? BorderRadius.circular(5),
             borderSide: BorderSide(color: Colors.grey.shade300),
           ),
           prefixIcon: widget.prefixIcon,
-          prefixIconConstraints: widget.smallSuffixIcon ? BoxConstraints(maxWidth: size.width * .15) : null,
+          prefixIconConstraints: widget.smallSuffixIcon
+              ? BoxConstraints(maxWidth: size.width * .15)
+              : null,
           suffixIcon: widget.suffixIcon,
-          suffixIconConstraints: widget.smallSuffixIcon ? BoxConstraints(maxWidth: size.width * .15) : null,
-          contentPadding: widget.maxLines != 1 ? null : const EdgeInsets.symmetric(horizontal: 16.0),
+          suffixIconConstraints: widget.smallSuffixIcon
+              ? BoxConstraints(maxWidth: size.width * .15)
+              : null,
+          contentPadding: widget.maxLines != 1
+              ? null
+              : const EdgeInsets.symmetric(horizontal: 16.0),
         ),
         obscureText: !widget.isPassword,
         enableSuggestions: widget.isPassword,
