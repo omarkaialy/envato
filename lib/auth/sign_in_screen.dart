@@ -73,7 +73,7 @@ class SignInScreen extends StatelessWidget {
                       fillColor: const Color(0xffF0F4F8),
                       borderColor: Colors.transparent,
                       prefixIcon: Padding(
-                        padding: const EdgeInsets.all(18.0),
+                        padding: const EdgeInsets.all(16.0),
                         child: Image.asset(
                           "assets/images/icon-padlock.png",
                         ),
