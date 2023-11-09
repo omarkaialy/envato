@@ -1,3 +1,5 @@
+import 'package:envato/auth/components/my_button.dart';
+import 'package:envato/auth/components/my_text_button.dart';
 import 'package:envato/auth/creat_account_screen.dart';
 import 'package:envato/constants/widgets/main_text_field.dart';
 import 'package:flutter/material.dart';
@@ -97,27 +99,11 @@ class SignInScreen extends StatelessWidget {
                     SizedBox(
                       height: screenHeight * .16,
                     ),
-                    ElevatedButton(
-                        onPressed: () {},
-                        style: ElevatedButton.styleFrom(
-                            backgroundColor: const Color(0xff7BED8D),
-                            padding: const EdgeInsets.all(10),
-                            elevation: 0,
-                            fixedSize: Size(screenWidth, screenHeight * .07),
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(40))),
-                        child: const Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(Icons.arrow_forward, size: 18),
-                            Text(
-                              " SIGN IN",
-                              style: TextStyle(
-                                  fontFamily: "Inter",
-                                  fontWeight: FontWeight.w700),
-                            )
-                          ],
-                        ))
+                    MyButton(
+                        width: screenWidth,
+                        height: screenHeight,
+                        buttonText: "SIGN IN",
+                        onPress: () {})
                   ],
                 ),
               ),
@@ -125,20 +111,14 @@ class SignInScreen extends StatelessWidget {
             SizedBox(
               height: screenHeight * .03,
             ),
-            TextButton(
-                onPressed: () {
+           MyTextButton(
+            buttonText: "CREATE ACOUNT", 
+            onPress: () {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
                           builder: (context) => CreateAcountScreen()));
-                },
-                child: const Text(
-                  "CREATE ACOUNT",
-                  style: TextStyle(
-                      color: Color(0xffA6BCD0),
-                      fontFamily: "Inter",
-                      fontWeight: FontWeight.w700),
-                )),
+                },)
           ],
         ),
       ),

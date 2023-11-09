@@ -1,12 +1,14 @@
+import 'package:envato/auth/components/my_button.dart';
+import 'package:envato/auth/components/my_text_button.dart';
 import 'package:flutter/material.dart';
-
 import '../constants/widgets/main_text_field.dart';
 
+// ignore: must_be_immutable
 class CreateAcountScreen extends StatelessWidget {
   CreateAcountScreen({super.key});
 
-  TextEditingController emailController = TextEditingController();
   TextEditingController fullnameController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
   TextEditingController passwordnameController = TextEditingController();
 
   @override
@@ -121,28 +123,11 @@ class CreateAcountScreen extends StatelessWidget {
                         SizedBox(
                           height: screenHeight * .12,
                         ),
-                        ElevatedButton(
-                            onPressed: () {},
-                            style: ElevatedButton.styleFrom(
-                                backgroundColor: const Color(0xff7BED8D),
-                                padding: const EdgeInsets.all(10),
-                                elevation: 0,
-                                fixedSize:
-                                    Size(screenWidth, screenHeight * .07),
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(40))),
-                            child: const Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Icon(Icons.arrow_forward, size: 18),
-                                Text(
-                                  "  CREAT ACCOUNT",
-                                  style: TextStyle(
-                                      fontFamily: "Inter",
-                                      fontWeight: FontWeight.w700),
-                                )
-                              ],
-                            ))
+                        MyButton(
+                            width: screenWidth,
+                            height: screenHeight,
+                            buttonText: "CREAT ACCOUNT",
+                            onPress: () {})
                       ],
                     ),
                   ),
@@ -151,15 +136,7 @@ class CreateAcountScreen extends StatelessWidget {
               SizedBox(
                 height: screenHeight * .03,
               ),
-              TextButton(
-                  onPressed: () {},
-                  child: const Text(
-                    "SING IN",
-                    style: TextStyle(
-                        color: Color(0xffA6BCD0),
-                        fontFamily: "Inter",
-                        fontWeight: FontWeight.w700),
-                  )),
+              MyTextButton(buttonText: "SING IN", onPress: () {})
             ],
           ),
         ),
