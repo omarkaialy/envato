@@ -1,4 +1,5 @@
 import 'package:envato/auth/sign_in_screen.dart';
+import 'package:envato/settings/settings.dart';
 //import 'package:envato/splash/splash_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -12,7 +13,7 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: SignInScreen(),
+      home: SETTINGS(),
       //SplashScreen(),
       debugShowCheckedModeBanner: false,
     );
