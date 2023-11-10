@@ -4,12 +4,15 @@ import 'package:envato/auth/creat_account_screen.dart';
 import 'package:envato/constants/widgets/main_text_field.dart';
 import 'package:flutter/material.dart';
 
+
 // ignore: must_be_immutable
 class SignInScreen extends StatelessWidget {
   SignInScreen({super.key});
 
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  final formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     final screenHeight = MediaQuery.of(context).size.height;
@@ -71,6 +74,14 @@ class SignInScreen extends StatelessWidget {
                     ),
                     MainTextField(
                       controller: passwordController,
+                      validator: (p0) {
+                        if (p0!.isEmpty) {
+                          return "Enter a vaild password";
+                        } else if (p0.length != 6) {
+                          return "Your password is too short";
+                        }
+                        return null;
+                      },
                       height: screenHeight * .07,
                       fillColor: const Color(0xffF0F4F8),
                       borderColor: Colors.transparent,
@@ -85,6 +96,7 @@ class SignInScreen extends StatelessWidget {
                       maxlength: 6,
                       counterText: '',
                       isPassword: false,
+                      keyboardType: TextInputType.number,
                     ),
                     SizedBox(
                       height: screenHeight * .015,
@@ -106,7 +118,9 @@ class SignInScreen extends StatelessWidget {
                         width: screenWidth,
                         height: screenHeight,
                         buttonText: "SIGN IN",
-                        onPress: () {})
+                        onPress: () {
+                          if (formKey.currentState!.validate()) {}
+                        })
                   ],
                 ),
               ),
@@ -114,14 +128,15 @@ class SignInScreen extends StatelessWidget {
             SizedBox(
               height: screenHeight * .03,
             ),
-           MyTextButton(
-            buttonText: "CREATE ACOUNT", 
-            onPress: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => CreateAcountScreen()));
-                },)
+            MyTextButton(
+              buttonText: "CREATE ACOUNT",
+              onPress: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => CreateAcountScreen()));
+              },
+            )
           ],
         ),
       ),

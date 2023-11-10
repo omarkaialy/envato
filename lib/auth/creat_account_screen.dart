@@ -10,6 +10,7 @@ class CreateAcountScreen extends StatelessWidget {
   TextEditingController fullnameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordnameController = TextEditingController();
+  final formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -108,6 +109,14 @@ class CreateAcountScreen extends StatelessWidget {
                         ),
                         MainTextField(
                           controller: passwordnameController,
+                          validator: (p0) {
+                            if (p0!.isEmpty) {
+                              return "Enter a vaild password";
+                            } else if (p0.length != 6) {
+                              return "Your password is too short";
+                            }
+                            return null;
+                          },
                           height: screenHeight * 0.07,
                           fillColor: const Color(0xffF0F4F8),
                           borderColor: Colors.transparent,
@@ -122,6 +131,7 @@ class CreateAcountScreen extends StatelessWidget {
                           maxlength: 6,
                           counterText: '',
                           isPassword: false,
+                          keyboardType: TextInputType.number,
                         ),
                         SizedBox(
                           height: screenHeight * .12,
@@ -130,7 +140,9 @@ class CreateAcountScreen extends StatelessWidget {
                             width: screenWidth,
                             height: screenHeight,
                             buttonText: "CREAT ACCOUNT",
-                            onPress: () {})
+                            onPress: () {
+                              if (formKey.currentState!.validate()) {}
+                            })
                       ],
                     ),
                   ),
