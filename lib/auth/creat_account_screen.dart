@@ -119,6 +119,9 @@ class CreateAcountScreen extends StatelessWidget {
                           ),
                           hint: "Password",
                           hintColor: const Color(0xffA6BCD0),
+                          maxlength: 6,
+                          counterText: '',
+                          isPassword: false,
                         ),
                         SizedBox(
                           height: screenHeight * .12,
