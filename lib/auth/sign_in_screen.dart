@@ -70,7 +70,7 @@ class SignInScreen extends StatelessWidget {
                       height: screenHeight * .02,
                     ),
                     MainTextField(
-                      controller: emailController,
+                      controller: passwordController,
                       height: screenHeight * .07,
                       fillColor: const Color(0xffF0F4F8),
                       borderColor: Colors.transparent,
@@ -82,6 +82,9 @@ class SignInScreen extends StatelessWidget {
                       ),
                       hint: "Password",
                       hintColor: const Color(0xffA6BCD0),
+                      maxlength: 6,
+                      counterText: '',
+                      isPassword: false,
                     ),
                     SizedBox(
                       height: screenHeight * .015,
