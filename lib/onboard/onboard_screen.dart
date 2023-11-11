@@ -1,3 +1,5 @@
+import 'package:envato/onboard/component/slide.dart';
+import 'package:envato/splash/splash_screen.dart';
 import 'package:flutter/material.dart';
 
 class Onboard extends StatefulWidget {
@@ -13,19 +15,22 @@ class _OnboardState extends State<Onboard> {
   @override
   void initState() {
     index = 0;
-    // TODO: implement initState
     super.initState();
   }
 
-  final List<Widget> _pages = [
-    Image.asset('assets/images/on_board2.png'),
-    Image.asset('assets/images/on_board1.png'),
-    Image.asset('assets/images/on_board1.png'),
-  ];
-  final List<String> text = [
-    'Quickly search about type healthy foods to yongest',
-    'with one click you can add every ingredient for a recipe to your',
-    'Tailor your recipes feed exactly how you like it',
+  final List<Slide> slides = [
+    Slide(
+      image: 'assets/images/on_board2.png',
+      text: 'Quickly search about type healthy foods to yongest',
+    ),
+    Slide(
+      image: 'assets/images/on_board1.png',
+      text: 'with one click you can add every ingredient for a recipe to your',
+    ),
+    Slide(
+      image: 'assets/images/on_board1.png',
+      text: 'Tailor your recipes feed exactly how you like it',
+    ),
   ];
   @override
   Widget build(BuildContext context) {
@@ -43,18 +48,25 @@ class _OnboardState extends State<Onboard> {
             ),
             child: Column(
               children: [
+                SizedBox(
+                  height: .1 * MediaQuery.sizeOf(context).height,
+                ),
                 GestureDetector(
                     onTap: () {
-                      if (index < _pages.length) {
+                      if (index == (slides.length - 1)) {
+                        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) {
+                          return const SplashScreen();
+                        }));
+                      } else {
                         setState(() {
-                          index += 1;
+                          index++;
                         });
                       }
                     },
-                    child: _pages[index]),
+                    child: Image.asset(slides[index].image)),
                 const Padding(padding: EdgeInsets.only(bottom: 50)),
                 Text(
-                  text[index],
+                  slides[index].text,
                 ),
               ],
             ),
