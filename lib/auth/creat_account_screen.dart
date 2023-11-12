@@ -78,6 +78,7 @@ class CreateAcountScreen extends StatelessWidget {
                             if (name == null) {
                               return 'Enter your Name';
                             }
+                            return null;
                           },
                           height: screenHeight * 0.07,
                           fillColor: const Color(0xffF0F4F8),
