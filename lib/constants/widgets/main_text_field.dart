@@ -102,7 +102,7 @@ class _MainTextFieldState extends State<MainTextField>
         enabled: widget.enabled,
         keyboardType: widget.keyboardType,
         maxLines: widget.maxLines,
-        maxLength:widget.maxlength,
+        maxLength: widget.maxlength,
         onChanged: widget.onChanged,
         autofocus: widget.autoFocus,
         decoration: InputDecoration(

@@ -74,6 +74,11 @@ class CreateAcountScreen extends StatelessWidget {
                         ),
                         MainTextField(
                           controller: fullnameController,
+                          validator: (name) {
+                            if (name == null) {
+                              return 'Enter your Name';
+                            }
+                          },
                           height: screenHeight * 0.07,
                           fillColor: const Color(0xffF0F4F8),
                           borderColor: Colors.transparent,
@@ -92,6 +97,17 @@ class CreateAcountScreen extends StatelessWidget {
                         MainTextField(
                           keyboardType: TextInputType.emailAddress,
                           controller: emailController,
+                          validator: (email) {
+                            if (email != null &&
+                                RegExp(
+                                  r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+",
+                                  caseSensitive: false,
+                                ).hasMatch(email)) {
+                              return null;
+                            } else {
+                              return "Add  valid email ";
+                            }
+                          },
                           height: screenHeight * 0.07,
                           fillColor: const Color(0xffF0F4F8),
                           borderColor: Colors.transparent,
