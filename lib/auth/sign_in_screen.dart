@@ -1,3 +1,5 @@
+import 'package:envato/auth/components/my_button.dart';
+import 'package:envato/auth/components/my_text_button.dart';
 import 'package:envato/auth/creat_account_screen.dart';
 import 'package:envato/constants/widgets/main_text_field.dart';
 import 'package:flutter/material.dart';
@@ -8,6 +10,8 @@ class SignInScreen extends StatelessWidget {
 
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  final formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     final screenHeight = MediaQuery.of(context).size.height;
@@ -51,7 +55,19 @@ class SignInScreen extends StatelessWidget {
                       height: screenHeight * .14,
                     ),
                     MainTextField(
+                      keyboardType: TextInputType.emailAddress,
                       controller: emailController,
+                      validator: (email) {
+                        if (email != null &&
+                            RegExp(
+                              r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+",
+                              caseSensitive: false,
+                            ).hasMatch(email)) {
+                          return null;
+                        } else {
+                          return "Add  valid email ";
+                        }
+                      },
                       height: screenHeight * .07,
                       fillColor: const Color(0xffF0F4F8),
                       borderColor: Colors.transparent,
@@ -68,7 +84,15 @@ class SignInScreen extends StatelessWidget {
                       height: screenHeight * .02,
                     ),
                     MainTextField(
-                      controller: emailController,
+                      controller: passwordController,
+                      validator: (p0) {
+                        if (p0!.isEmpty) {
+                          return "Enter a vaild password";
+                        } else if (p0.length != 6) {
+                          return "Your password is too short";
+                        }
+                        return null;
+                      },
                       height: screenHeight * .07,
                       fillColor: const Color(0xffF0F4F8),
                       borderColor: Colors.transparent,
@@ -80,6 +104,10 @@ class SignInScreen extends StatelessWidget {
                       ),
                       hint: "Password",
                       hintColor: const Color(0xffA6BCD0),
+                      maxlength: 6,
+                      counterText: '',
+                      isPassword: false,
+                      keyboardType: TextInputType.number,
                     ),
                     SizedBox(
                       height: screenHeight * .015,
@@ -97,27 +125,13 @@ class SignInScreen extends StatelessWidget {
                     SizedBox(
                       height: screenHeight * .16,
                     ),
-                    ElevatedButton(
-                        onPressed: () {},
-                        style: ElevatedButton.styleFrom(
-                            backgroundColor: const Color(0xff7BED8D),
-                            padding: const EdgeInsets.all(10),
-                            elevation: 0,
-                            fixedSize: Size(screenWidth, screenHeight * .07),
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(40))),
-                        child: const Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(Icons.arrow_forward, size: 18),
-                            Text(
-                              " SIGN IN",
-                              style: TextStyle(
-                                  fontFamily: "Inter",
-                                  fontWeight: FontWeight.w700),
-                            )
-                          ],
-                        ))
+                    MyButton(
+                        width: screenWidth,
+                        height: screenHeight,
+                        buttonText: "SIGN IN",
+                        onPress: () {
+                          if (formKey.currentState!.validate()) {}
+                        })
                   ],
                 ),
               ),
@@ -125,20 +139,15 @@ class SignInScreen extends StatelessWidget {
             SizedBox(
               height: screenHeight * .03,
             ),
-            TextButton(
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => CreateAcountScreen()));
-                },
-                child: const Text(
-                  "CREATE ACOUNT",
-                  style: TextStyle(
-                      color: Color(0xffA6BCD0),
-                      fontFamily: "Inter",
-                      fontWeight: FontWeight.w700),
-                )),
+            MyTextButton(
+              buttonText: "CREATE ACOUNT",
+              onPress: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => CreateAcountScreen()));
+              },
+            )
           ],
         ),
       ),

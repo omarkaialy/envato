@@ -5,7 +5,7 @@ class MainTextField extends StatefulWidget {
     Key? key,
     this.borderColor,
     this.onChanged,
-    this.prefixIcon,
+    required this.prefixIcon,
     this.suffixIcon,
     this.validator,
     this.keyboardType = TextInputType.text,
@@ -20,9 +20,11 @@ class MainTextField extends StatefulWidget {
     this.hintColor,
     this.width,
     this.height,
+    this.maxlength,
     this.label,
     this.fillColor = Colors.white,
-    this.hint,
+    required this.hint,
+    this.counterText,
     this.onSubmitted,
     required this.controller,
     this.autovalidateMode = AutovalidateMode.onUserInteraction,
@@ -33,7 +35,9 @@ class MainTextField extends StatefulWidget {
   final double? width;
   final Function(String)? onSubmitted;
   final double? height;
+  final int? maxlength;
   final String? hint;
+  final String? counterText;
   final Color? hintColor;
   final Widget? prefixIcon;
   final Widget? suffixIcon;
@@ -98,6 +102,7 @@ class _MainTextFieldState extends State<MainTextField>
         enabled: widget.enabled,
         keyboardType: widget.keyboardType,
         maxLines: widget.maxLines,
+        maxLength: widget.maxlength,
         onChanged: widget.onChanged,
         autofocus: widget.autoFocus,
         decoration: InputDecoration(
@@ -106,6 +111,7 @@ class _MainTextFieldState extends State<MainTextField>
           filled: true,
           fillColor: widget.fillColor,
           hintText: widget.hint,
+          counterText: widget.counterText,
           hintStyle: TextStyle(
             fontSize: size.width * .035,
             color: widget.hintColor ?? Colors.grey.shade700,
