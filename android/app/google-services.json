@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "881556253891",
+    "project_id": "envato-2b7c8",
+    "storage_bucket": "envato-2b7c8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:881556253891:android:d91c37d6ae8901dd8b8676",
+        "android_client_info": {
+          "package_name": "com.example.envato"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBWG5EgMjwz9vwjyfYizwb5zqbAmkelews"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

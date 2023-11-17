@@ -1,6 +1,7 @@
+import 'package:envato/auth/sign_in_screen.dart';
 import 'package:envato/onboard/component/slide.dart';
-import 'package:envato/splash/splash_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Onboard extends StatefulWidget {
   const Onboard({super.key});
@@ -37,6 +38,7 @@ class _OnboardState extends State<Onboard> {
     return Scaffold(
       backgroundColor: Colors.white70,
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Container(
@@ -51,28 +53,70 @@ class _OnboardState extends State<Onboard> {
                 SizedBox(
                   height: .1 * MediaQuery.sizeOf(context).height,
                 ),
-                GestureDetector(
-                    onTap: () {
-                      if (index == (slides.length - 1)) {
-                        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) {
-                          return const SplashScreen();
-                        }));
-                      } else {
-                        setState(() {
-                          index++;
-                        });
-                      }
-                    },
-                    child: Image.asset(slides[index].image)),
+                GestureDetector(onTap: () {}, child: Image.asset(slides[index].image)),
                 const Padding(padding: EdgeInsets.only(bottom: 50)),
                 Text(
                   slides[index].text,
                 ),
+                const SizedBox(
+                  height: 50,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                      width: 10,
+                      height: 10,
+                      decoration: BoxDecoration(shape: BoxShape.circle, color: index == 0 ? Colors.black : Colors.grey),
+                    ),
+                    Container(
+                      width: 10,
+                      height: 10,
+                      margin: const EdgeInsets.all(10),
+                      decoration: BoxDecoration(shape: BoxShape.circle, color: index == 1 ? Colors.black : Colors.grey),
+                    ),
+                    Container(
+                      width: 10,
+                      height: 10,
+                      decoration: BoxDecoration(shape: BoxShape.circle, color: index == 2 ? Colors.black : Colors.grey),
+                    )
+                  ],
+                )
               ],
             ),
           ),
           const SizedBox(
             height: 50,
+          ),
+          Padding(
+            padding: const EdgeInsets.all(15.0),
+            child: index == (slides.length - 1)
+                ? ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.green,
+                    ),
+                    onPressed: () async {
+                      final SharedPreferences prefs = await SharedPreferences.getInstance();
+                      await prefs.setBool('firstTime', true);
+
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) {
+                            return SignInScreen();
+                          },
+                        ),
+                      );
+                    },
+                    child: const Text('+Get Started'),
+                  )
+                : TextButton(
+                    onPressed: () {
+                      setState(() {
+                        index++;
+                      });
+                    },
+                    child: const Text('Next')),
           )
         ],
       ),
