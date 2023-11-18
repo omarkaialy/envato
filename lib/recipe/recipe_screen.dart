@@ -1,117 +1,39 @@
+import 'package:envato/recipe/model/recipe.dart';
 import 'package:flutter/material.dart';
+
+import 'components/recipe_widget.dart';
 
 void main() {
   runApp(const RecipeScreen());
 }
 
-class RecipeScreen extends StatelessWidget {
+class RecipeScreen extends StatefulWidget {
   const RecipeScreen({super.key});
+
+  @override
+  State<RecipeScreen> createState() => _RecipeScreenState();
+}
+
+class _RecipeScreenState extends State<RecipeScreen> {
+  final List<Recipe> list = [
+    Recipe(image: 'assets/images/logo.png', title: 'Shawarma', desciption: 'desciption'),
+    Recipe(image: 'assets/images/on_board2.png', title: 'Shawarma', desciption: 'desciption'),
+    Recipe(image: 'assets/images/on_board1.png', title: 'Shawarma', desciption: 'desciption'),
+  ];
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         home: Scaffold(
-          body: ListView(
+          body: ListView.builder(
+            itemCount: list.length,
             scrollDirection: Axis.vertical,
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(25),
-                child: Container(
-                  height: 275,
-                  clipBehavior: Clip.hardEdge,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
-                      color: Colors.grey[350]),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Image.asset(
-                        'assets/images/ss.jpg',
-                        height: 200,
-                        width: double.infinity,
-                        fit: BoxFit.cover,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 25, top: 20),
-                        child: const Text(
-                          'hello every body, you are in a recipe world',
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 25, bottom: 20),
-                        child: const Text(
-                          'do you want to know more?',
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(25),
-                child: Container(
-                  clipBehavior: Clip.hardEdge,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
-                      color: Colors.grey[350]),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Image.asset(
-                        'assets/images/ss.jpg',
-                        height: 275,
-                        width: double.infinity,
-                        fit: BoxFit.cover,
-                      ),
-                      const Padding(
-                        padding: EdgeInsets.only(left: 25, top: 20),
-                        child: Text(
-                          'hello every body, you are in a recipe world',
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                      const Padding(
-                        padding: EdgeInsets.only(left: 25, bottom: 20),
-                        child: Text('do you want to know more?'),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(25),
-                child: Container(
-                  clipBehavior: Clip.hardEdge,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
-                      color: Colors.grey[350]),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Image.asset(
-                        'assets/images/ss.jpg',
-                        height: 275,
-                        width: double.infinity,
-                        fit: BoxFit.cover,
-                      ),
-                      const Padding(
-                        padding: EdgeInsets.only(left: 25, top: 20),
-                        child: Text(
-                          'hello every body, you are in a recipe world',
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                      const Padding(
-                        padding: EdgeInsets.only(left: 25, bottom: 20),
-                        child: Text('do you want to know more?'),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ],
+            itemBuilder: (context, index) => RecipeWidget(
+              title: list[index].title,
+              image: list[index].image,
+              description: list[index].desciption,
+            ),
           ),
         ));
   }

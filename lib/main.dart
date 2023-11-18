@@ -1,8 +1,8 @@
-import 'package:envato/splash/splash_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 import 'firebase_options.dart';
+import 'recipe/recipe_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -20,7 +20,7 @@ class MainApp extends StatelessWidget {
     return const MaterialApp(
       home:
           // SignInScreen(),
-          SplashScreen(),
+          RecipeScreen(),
       debugShowCheckedModeBanner: false,
     );
   }

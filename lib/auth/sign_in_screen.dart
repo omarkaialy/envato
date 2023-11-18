@@ -6,6 +6,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../home/home_screen.dart';
+
 // ignore: must_be_immutable
 class SignInScreen extends StatefulWidget {
   const SignInScreen({super.key});
@@ -124,9 +126,9 @@ class _SignInScreenState extends State<SignInScreen> {
                       MyButton(
                           width: screenWidth,
                           height: screenHeight,
-                          buttonText: "SIGN IN",
+                          buttonText: isLoading ? "Loading..." : "SIGN IN",
                           onPress: () async {
-                            if (formKey.currentState!.validate()) {
+                            if (!isLoading && formKey.currentState!.validate()) {
                               try {
                                 setState(() {
                                   isLoading = true;
@@ -142,7 +144,9 @@ class _SignInScreenState extends State<SignInScreen> {
                                   isLoading = false;
                                 });
 
-// Navigator.pushReplacement(context, MaterialPageRoute(builder: (context){return HomeScreen();}));
+                                Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) {
+                                  return const HomeScreen();
+                                }));
                               } on FirebaseAuthException catch (e) {
                                 setState(() {
                                   isLoading = false;

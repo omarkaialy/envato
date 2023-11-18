@@ -1,5 +1,6 @@
 import 'package:envato/auth/components/my_button.dart';
 import 'package:envato/auth/components/my_text_button.dart';
+import 'package:envato/home/home_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -177,7 +178,9 @@ class _CreateAcountScreenState extends State<CreateAcountScreen> {
                                       isLoading = false;
                                     });
 
-// Navigator.pushReplacement(context, MaterialPageRoute(builder: (context){return HomeScreen();}));
+                                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) {
+                                      return const HomeScreen();
+                                    }));
                                   } on FirebaseAuthException catch (e) {
                                     setState(() {
                                       isLoading = false;
